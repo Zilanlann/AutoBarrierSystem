@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Window(object):
     def setupUi(self, Window):
         Window.setObjectName("Window")
-        Window.resize(531, 489)
+        Window.resize(531, 417)
         self.formLayout = QtWidgets.QFormLayout(Window)
         self.formLayout.setObjectName("formLayout")
         self.LargeTitleLabel = LargeTitleLabel(parent=Window)
