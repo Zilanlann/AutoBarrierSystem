@@ -35,7 +35,8 @@ class Ui_Window(object):
         self.PasswordLineEdit.setObjectName("PasswordLineEdit")
         self.verticalLayout.addWidget(self.PasswordLineEdit)
         self.LineEdit = LineEdit(parent=Window)
-        self.LineEdit.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.LineEdit.setAlignment(
+            QtCore.Qt.AlignmentFlag.AlignLeading | QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.LineEdit.setObjectName("LineEdit")
         self.verticalLayout.addWidget(self.LineEdit)
         self.PrimaryPushButton = PrimaryPushButton(parent=Window)
@@ -53,4 +54,6 @@ class Ui_Window(object):
         self.PasswordLineEdit.setPlaceholderText(_translate("Window", "Password"))
         self.LineEdit.setPlaceholderText(_translate("Window", "Username"))
         self.PrimaryPushButton.setText(_translate("Window", "登录"))
+
+
 from qfluentwidgets import LargeTitleLabel, LineEdit, PasswordLineEdit, PrimaryPushButton
