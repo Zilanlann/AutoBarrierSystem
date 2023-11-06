@@ -40,3 +40,4 @@ def get_card_id(ser):
         data = recv(ser)
         if data.decode('ascii') != '':
             return data.decode('ascii')
+

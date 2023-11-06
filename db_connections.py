@@ -6,7 +6,7 @@ db = pymysql.connect(
     host="localhost",
     db="mysql",
     user="root",
-    password="X*TnVEzbKMwHLJ3"
+    password="kiwMmya7xtS%DE"
 )
 cursor = db.cursor()
 
@@ -71,13 +71,13 @@ def authenticate_user(username, password):
     if result:
         sql = "SELECT * FROM users WHERE username=%s and password=AES_ENCRYPT(%s, 'usee111')"
         if cursor.execute(sql, (username, password)):
-            print("Login successful")
+            print("登录成功")
             return 1
         else:
-            print("Invalid password")
+            print("密码错误")
             return 0
     else:
-        print("User not found")
+        print("用户不存在")
         return -1
 
 
@@ -181,7 +181,7 @@ def car_exit(tag_number):
 
 
 def determine_entry_or_exit(tag_number):
-    """检测到IC卡之后判断是车辆进入还是离开，执行对应的函数"""
+    """检测到IC卡之后判断是车辆进入还是离开，执行对应的函数，返回-1 or -2 or 费用"""
 
     cursor.execute("SELECT COUNT(*) FROM rfid_tags WHERE TagNumber = %s", tag_number)
     exist = cursor.fetchone()[0]
