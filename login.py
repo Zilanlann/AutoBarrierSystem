@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+from db_connections import *
 
 class Ui_Login(object):
     def setupUi(self, Login):
@@ -54,9 +54,9 @@ class Ui_Login(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setSpacing(25)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.LineEdit = LineEdit(parent=self.widget)
-        self.LineEdit.setObjectName("LineEdit")
-        self.verticalLayout.addWidget(self.LineEdit)
+        self.UserLineEdit = LineEdit(parent=self.widget)
+        self.UserLineEdit.setObjectName("LineEdit")
+        self.verticalLayout.addWidget(self.UserLineEdit)
         self.PasswordLineEdit = PasswordLineEdit(parent=self.widget)
         self.PasswordLineEdit.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.PasswordLineEdit.setPasswordVisible(False)
@@ -66,12 +66,25 @@ class Ui_Login(object):
 
         self.retranslateUi(Login)
         QtCore.QMetaObject.connectSlotsByName(Login)
+        self.center()
+
+    def center(self):
+        """将主程序窗口居中"""
+        qr = self.frameGeometry()
+        cp = self.screen().availableGeometry().center()
+
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+
+
 
     def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
         Login.setWindowTitle(_translate("Login", "汽车道闸控制系统"))
         self.TitleLabel.setText(_translate("Login", "管理员登录"))
         self.btn_login.setText(_translate("Login", "登录"))
-        self.LineEdit.setPlaceholderText(_translate("Login", "Username"))
+        self.UserLineEdit.setPlaceholderText(_translate("Login", "Username"))
         self.PasswordLineEdit.setPlaceholderText(_translate("Login", "Password"))
+
+
 from qfluentwidgets import LineEdit, PasswordLineEdit, PrimaryPushButton, TitleLabel
