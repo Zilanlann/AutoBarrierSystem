@@ -6,13 +6,20 @@ db = pymysql.connect(
     host="localhost",
     db="mysql",
     user="root",
-    password="kiwMmya7xtS%DE"
+    password="X*TnVEzbKMwHLJ3"
 )
 cursor = db.cursor()
 
 
 def init_table():
-    """初始化VehicleInfo, ChargeRecords, RFIDTags表"""
+    """初始化Users, VehicleInfo, ChargeRecords, RFIDTags表"""
+    create_users = """
+    CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL,
+        password BLOB NOT NULL
+    )
+    """
     create_vehicle_info = """
     CREATE TABLE IF NOT EXISTS vehicle_info (
         VehicleID INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,9 +50,54 @@ def init_table():
         FOREIGN KEY (RFIDTagID) REFERENCES rfid_tags(TagID)
     );
     """
+    cursor.execute(create_users)
     cursor.execute(create_vehicle_info)
     cursor.execute(create_rfid_tags)
     cursor.execute(create_charge_records)
+
+
+def add_user(username, password):
+    """插入用户名密码，密码使用AES加密"""
+    sql = "INSERT INTO users (username, password) VALUES (%s, AES_ENCRYPT(%s, 'usee111'))"
+    cursor.execute(sql, (username, password))
+    db.commit()
+
+
+def authenticate_user(username, password):
+    """验证用户账号密码，密码进行相同的AES加密之后与数据库中的密码比对"""
+    sql = "SELECT * FROM users WHERE username=%s"
+    cursor.execute(sql, (username,))
+    result = cursor.fetchone()
+    if result:
+        sql = "SELECT * FROM users WHERE username=%s and password=AES_ENCRYPT(%s, 'usee111')"
+        if cursor.execute(sql, (username, password)):
+            print("Login successful")
+            return 1
+        else:
+            print("Invalid password")
+            return 0
+    else:
+        print("User not found")
+        return -1
+
+
+def change_password(username, old_password, new_password):
+    """修改用户密码"""
+    # 验证用户身份
+    result = authenticate_user(username, old_password)
+    if result == 1:
+        # 更新密码
+        update_sql = "UPDATE users SET password=AES_ENCRYPT(%s, 'usee111') WHERE username=%s"
+        cursor.execute(update_sql, (new_password, username))
+        db.commit()
+        print("Password updated successfully")
+        return 1
+    elif result == 0:
+        print("Invalid old password")
+        return 0
+    else:
+        print("User not found")
+        return -1
 
 
 def add_new_car(car: str, card_id: str):
@@ -151,7 +203,11 @@ def determine_entry_or_exit(tag_number):
 
 
 def delete_all():
-    cursor.execute("DROP TABLE IF EXISTS charge_records, vehicle_info, rfid_tags")
+    cursor.execute("DROP TABLE IF EXISTS users, charge_records, vehicle_info, rfid_tags")
 
 
-# delete_all()
+init_table()
+add_user("hanyifan", "Hyf0423_00")
+authenticate_user("hanyifan", "Hyf0423_00")
+change_password("hanyifan", "Hyf0423_00", "11111")
+delete_all()
