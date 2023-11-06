@@ -55,7 +55,7 @@
    <property name="font">
     <font>
      <family>华文楷体</family>
-     <pointsize>-1</pointsize>
+     <pointsize>20</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -63,7 +63,7 @@
     <string>管理员登录</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>130</x>

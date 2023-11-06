@@ -16,30 +16,18 @@ class MyThread(QThread):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.is_paused = bool(0)  # 标记线程是否暂停
         self.mutex = QMutex()  # 互斥锁，用于线程同步
         self.cond = QWaitCondition()  # 等待条件，用于线程暂停和恢复
-
-    def pause_thread(self):
-        with QMutexLocker(self.mutex):
-            self.is_paused = True  # 设置线程为暂停状态
-
-    def resume_thread(self):
-        if self.is_paused:
-            with QMutexLocker(self.mutex):
-                self.is_paused = False  # 设置线程为非暂停状态
-                self.cond.wakeOne()  # 唤醒一个等待的线程
 
     def run(self):
         while True:
             with QMutexLocker(self.mutex):
-                while self.is_paused:
-                    self.cond.wait(self.mutex)  # 当线程暂停时，等待条件满足
                 # 检测IC卡
                 rfid_tag = get_card_id(ser)
                 # rfid_tag = "FFFFF"
                 self.tmp = determine_entry_or_exit(rfid_tag)
                 self.card_status.emit(self.tmp)
+                sleep(0.5)
 
 
 class PassDialog(QMainWindow, Ui_PassDialog):

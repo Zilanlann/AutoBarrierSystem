@@ -103,7 +103,6 @@ void IC_test()
 
 void main()
 {
-    uchar i;
     InitIO();
     Init_LED_IO();
     PcdReset();
