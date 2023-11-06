@@ -205,9 +205,3 @@ def determine_entry_or_exit(tag_number):
 def delete_all():
     cursor.execute("DROP TABLE IF EXISTS users, charge_records, vehicle_info, rfid_tags")
 
-
-init_table()
-add_user("hanyifan", "Hyf0423_00")
-authenticate_user("hanyifan", "Hyf0423_00")
-change_password("hanyifan", "Hyf0423_00", "11111")
-delete_all()
