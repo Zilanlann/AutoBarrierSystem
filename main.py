@@ -43,21 +43,42 @@ class MyThread(QThread):
 
 
 class PassDialog(QMainWindow, Ui_PassDialog):
+    """密码修改界面"""
+
     def __init__(self, parent=None):
         super(PassDialog, self).__init__(parent)
         self.setupUi(self)
         self.setup_ui()
 
     def setup_ui(self):
-        self.ConfirmPushButton.clicked.connect()
-        self.CancelPushButton.clicked.connect()
+        self.ConfirmPushButton.clicked.connect(self.modify_password)
+        self.CancelPushButton.clicked.connect(self.close)
+
+    def modify_password(self):
+        """密码修改"""
+        username = self.username.text()
+        old_password = self.oldpassword.text()
+        new_password = self.newpassword.text()
+        result = change_password(username, old_password, new_password)
+        if result == 1:
+            QMessageBox.information(self, "提示", "密码修改成功！")
+            my_login.show()
+            my_window.close()
+            pass_dialog.close()
+
+        elif result == 0:
+            QMessageBox.information(self, "提示", "旧密码错误，请重新输入！")
+        else:
+            QMessageBox.information(self, "提示", "该用户不存在！")
 
 
 def modify_password():
+    """打开密码修改界面"""
     pass_dialog.show()
 
 
 class MyWindow(QMainWindow, Ui_MainWindow):
+    """主程序窗口"""
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
         self.thread = None
@@ -114,13 +135,14 @@ class MyWindow(QMainWindow, Ui_MainWindow):
 
 
 class MyLogin(QMainWindow, Ui_Login):
+    """登录窗口"""
     def __init__(self, parent=None):
         super(MyLogin, self).__init__(parent)
         self.setupUi(self)
         self.setup_ui()
 
     def setup_ui(self):
-        # 按钮绑定函数
+        # 绑定按钮点击事件
         self.btn_login.clicked.connect(self.check_login)
 
     def check_login(self):

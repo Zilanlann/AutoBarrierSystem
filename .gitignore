@@ -1,5 +1,5 @@
 
-.idea/*
-
-__pycache__/*
+.idea/
+RFID/Debug/
+__pycache__/
 PyQt-Fluent-Widgets
