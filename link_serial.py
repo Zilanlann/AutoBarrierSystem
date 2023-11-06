@@ -21,7 +21,6 @@ def recv(ser):
             continue
         else:
             break
-        sleep(0.02)
     return data
 
 

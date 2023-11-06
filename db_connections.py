@@ -77,7 +77,7 @@ def add_new_car(car: str, card_id: str):
 
 
 def car_entry(tag_number):
-    """车辆进入停车场"""
+    """车辆进入"""
     try:
         # 查找与标签号相关的车辆和RFID标签ID
         cursor.execute("SELECT VehicleID, TagID AS RFIDTagID FROM rfid_tags WHERE TagNumber = %s", tag_number)
@@ -96,7 +96,7 @@ def car_entry(tag_number):
 
 
 def car_exit(tag_number):
-    """车辆离开停车场，并返回总费用"""
+    """车辆离开，并返回总费用"""
     try:
         # 查找与标签号相关的车辆和RFID标签ID
         cursor.execute("SELECT VehicleID, TagID AS RFIDTagID FROM rfid_tags WHERE TagNumber = %s", tag_number)
@@ -130,6 +130,7 @@ def car_exit(tag_number):
 
 def determine_entry_or_exit(tag_number):
     """检测到IC卡之后判断是车辆进入还是离开，执行对应的函数"""
+
     cursor.execute("SELECT COUNT(*) FROM rfid_tags WHERE TagNumber = %s", tag_number)
     exist = cursor.fetchone()[0]
     if exist == 0:
@@ -151,5 +152,6 @@ def determine_entry_or_exit(tag_number):
 
 def delete_all():
     cursor.execute("DROP TABLE IF EXISTS charge_records, vehicle_info, rfid_tags")
+
 
 # delete_all()
