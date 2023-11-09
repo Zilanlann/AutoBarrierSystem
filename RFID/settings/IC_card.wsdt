@@ -53,7 +53,7 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>91</YPos><SelStart>1938</SelStart><SelEnd>1938</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\IC_w_r.c</Filename><XPos>0</XPos><YPos>57</YPos><SelStart>3202</SelStart><SelEnd>3202</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\UART.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>430</SelStart><SelEnd>666</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>91</YPos><SelStart>1987</SelStart><SelEnd>1987</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\IC_w_r.c</Filename><XPos>0</XPos><YPos>57</YPos><SelStart>3202</SelStart><SelEnd>3202</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\UART.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>430</SelStart><SelEnd>666</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       

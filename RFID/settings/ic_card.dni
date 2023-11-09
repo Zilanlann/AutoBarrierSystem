@@ -31,12 +31,6 @@ UseTrigger=1
 TriggerName=main
 LimitSize=0
 ByteLimit=50
-[Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\main.c}.190.5@1" 1 0 0 0 "" 0 ""
-Count=1
-[ChipconEmu]
-Stop timers on halt=1
-Leave target running=1
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -44,6 +38,12 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\main.c}.189.5@1" 1 0 0 0 "" 0 ""
+Count=1
+[ChipconEmu]
+Stop timers on halt=1
+Leave target running=1
 [Aliases]
 A0=_ "D:\Documents and Settings\Administrator\桌面\IC_card\main.c" "E:\学习\电子\electron\zigbee\学习例程和笔记\17.IC_card\main.c"
 A1=_ "F:\Texas Instruments 无线IC卡考勤机\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\裸机程序\IC_CARD\main.c" ""
