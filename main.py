@@ -3,11 +3,10 @@ import sys
 from PyQt6.QtCore import QThread, pyqtSignal, QMutex, QWaitCondition, QMutexLocker
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
-from login import *
-from window import *
-from passdialog import *
 from link_serial import *
-from db_connections import *
+from login import *
+from passdialog import *
+from window import *
 
 
 class MyThread(QThread):
@@ -67,6 +66,7 @@ def modify_password():
 
 class MyWindow(QMainWindow, Ui_MainWindow):
     """主程序窗口"""
+
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
         self.thread = None
@@ -124,6 +124,7 @@ class MyWindow(QMainWindow, Ui_MainWindow):
 
 class MyLogin(QMainWindow, Ui_Login):
     """登录窗口"""
+
     def __init__(self, parent=None):
         super(MyLogin, self).__init__(parent)
         self.setupUi(self)
